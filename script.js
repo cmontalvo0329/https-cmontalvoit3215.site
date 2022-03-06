@@ -42,8 +42,6 @@ element.addEventListener("mouseover", this.loadFullImage, false);
 
 }
 
-  
-
 },
 
 loadFullImage =function (event) // mouse over event handler function to load full image
@@ -66,10 +64,6 @@ homepageBanner(); // calling preive method to load slider
 
 addListeners(); // calling pricate method to register mouse over events
 
-  
-
-  
-
 }
 
 };
@@ -79,7 +73,6 @@ addListeners(); // calling pricate method to register mouse over events
 return retObject;
 
 })( );
-
   
 
 //calling a privileged method of module
