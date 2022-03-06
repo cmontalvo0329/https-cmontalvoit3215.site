@@ -1,4 +1,4 @@
-let $ = function (id) { return document.getElementById(id); };
+let $ = function (id) {return document.getElementById(id);};
 let imageMem = [];
 
 function cycleImages(imageArray, elementId) {
@@ -17,15 +17,16 @@ function preloadImages(imageArray, index) {
     index = index || 0;
     
     if (imageArray && imageArray.length > index) {
+        
         let img = new Image();
         img.src = imageArray[index];
         
         img.onload = function () {
             preloadImages(imageArray, index + 1);
         }
-        
         imageMem.push(img);
         //keeps image objects in memory
+        
     }
 }
 
