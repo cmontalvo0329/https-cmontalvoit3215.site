@@ -29,12 +29,12 @@ return false;
 }
 //If password length is less than 8 or empty
 if(password.length <8 || password==""){
-document.getElementById('errorpassword').innerHTML = 'Password length should be atleast 8.';
+document.getElementById('errorpassword').innerHTML = 'Password length should be at least 8 characters.';
 return false;
 }
 //If confirm password length is less than 8 or empty
 if(vpassword.length <8 || vpassword==""){
-document.getElementById('errorpasswordVerify').innerHTML = 'Confirm Password length should be atleast 8.';
+document.getElementById('errorpasswordVerify').innerHTML = 'Confirm Password length should be at least 8 characters.';
 return false;
 }
 //If password and cofirm password both are not same
