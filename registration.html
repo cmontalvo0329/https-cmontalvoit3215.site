@@ -1,68 +1,312 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <head>
-    <title>Invitation Page</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
+<title>Invitation Page</title>
+<link rel="stylesheet" type="text/css">
+<script type="text/javascript">
+  function validate(){
+// Creating regex for username, firstname, lastname and phone number
+usernameFormat = "^[a-z A-Z0-9]+$"; //This will allow only lower and uppercase alphabets , space and number
+nameFormat = "^[a-z A-Z]+$";// this will only allow lower and upper case characters and space
+phonenoFormat = "^[1-9][0-9]{9}$";//This will allow only digits but first digit can not be 0 and rest can be between 0-9 and total should not be exceed 10
+var username = document.getElementsByName('userName')[0].value;
+var password = document.getElementsByName('password')[0].value;
+var vpassword = document.getElementsByName('passwordVerify')[0].value;
+var firstname = document.getElementsByName('firstName')[0].value;
+var lastname = document.getElementsByName('lastName')[0].value;
+var email = document.getElementsByName('email')[0].value;
+var phoneNumber = document.getElementsByName('phoneNumber')[0].value;
+var newsletter = document.getElementsByName('signUpNewsletter');
+//If username is empty
+if (username == "" ) {
+document.getElementById('erroruserName').innerHTML = 'Username can\'t be empty.';
+return false;
+}
+//If username does not match the respective regex
+if(!username.match(usernameFormat) ){
+document.getElementById('erroruserName').innerHTML = 'Invalid Username.';
+return false;
+}
+//If password length is less than 8 or empty
+if(password.length <8 || password==""){
+document.getElementById('errorpassword').innerHTML = 'Password length should be atleast 8.';
+return false;
+}
+//If confirm password length is less than 8 or empty
+if(vpassword.length <8 || vpassword==""){
+document.getElementById('errorpasswordVerify').innerHTML = 'Confirm Password length should be atleast 8.';
+return false;
+}
+//If password and cofirm password both are not same
+if(vpassword != password){
+document.getElementById('errorpasswordVerify').innerHTML = 'Confirm password should be same as Password.';
+return false;
+}
+//If firstname is empty
+if (firstname == '' ) {
+document.getElementById('errorfirstName').innerHTML = 'First Name can\'t be empty.';
+return false;
+}
+//If firstname does not match the name regex
+if(!firstname.match(nameFormat) ){
+document.getElementById('errorfirstName').innerHTML = 'Invalid First Name.';
+return false;
+}
+//If lastname is empty
+if (lastname == '' ) {
+document.getElementById('errorlastName').innerHTML = 'Last Name can\'t be empty.';
+return false;
+}
+//If last name does not match the name regex
+if(!lastname.match(nameFormat) ){
+document.getElementById('errorlastName').innerHTML = 'Invalid Last Name.';
+return false;
+}
+//If email field is empty
+if (email == '' ) {
+document.getElementById('erroremail').innerHTML = 'Email can\'t be empty.';
+return false;
+}
+//If email does not contain @ anywhere
+if (email.indexOf("@", 0) < 0)  
+{
+document.getElementById('erroremail').innerHTML = 'Invalid Email format.';
+return false;
+}
+//IF . is not present anywhere
+if (email.indexOf(".", 0) < 0)  
+{
+document.getElementById('erroremail').innerHTML = 'Invalid Email format.';
+return false;
+}
+//If phone number is empty
+if (phoneNumber == '' ) {
+document.getElementById('errorphoneNumber').innerHTML = 'Phone Number can\'t be empty.';
+return false;
+}
+//If phone number does not match the phone regex
+if(!phoneNumber.match(phonenoFormat) ){
+document.getElementById('errorphoneNumber').innerHTML = 'Invalid Phone Number.';
+return false;
+}
+//if either of the radio button is not clciked
+if ( ( signUpNewsletter[0].checked == false ) && ( signUpNewsletter[1].checked == false ) ) {
+document.getElementById('errorsignUpNewsletter').innerHTML = 'Invalid Phone Number.';
+return false;
+}
+//IF validate.js return false then that means validation is not successful and confirmation.php page will not load.
+}
+
+</script>
+<style>
+body {
+font: 15px arial, sans-serif;
+color: #808080;
+}
+input[type=text],
+select ,input[type=password],radio{
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+}
+input[type=submit] ,input[type=button]{
+width: 100%;
+background-color: #800D1E;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+input[type=submit]:hover ;input[type=button]:hover {
+background-color: #802F1E;
+}
+section {
+border-radius: 5px;
+background-color: #f2f2f2;
+padding: 20px;
+}
+article {
+border-radius: 5px;
+background-color: #CCCCCC;
+padding: 20px;
+color: #222222;
+}
+ul.topnav {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #333;
+}
+ul.topnav li {
+float: left;
+}
+ul.topnav li a {
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+ul.topnav li a:hover:not(.active) {
+background-color: #111;
+}
+ul.topnav li a.active {
+background-color: #CCCCCC;
+color: #333
+}
+ul.topnav li.right {
+float: right;
+}
+@media screen and (max-width: 600px) {
+ul.topnav li.right,
+ul.topnav li {
+float: none;
+}
+}
+.top {
+position: relative;
+background-color: #ffffff;
+height: 68px;
+padding-top: 20px;
+line-height: 50px;
+overflow: hidden;
+z-index: 2;
+}
+.logo {
+font-family: arial;
+text-decoration: none;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+font-size: 37px;
+letter-spacing: 3px;
+color: #555555;
+display: block;
+position: absolute;
+top: 17px;
+}
+.logo .dotcom {
+color: #800D1E
+}
+.topnav {
+position: relative;
+z-index: 2;
+font-size: 17px;
+background-color: #5f5f5f;
+color: #f1f1f1;
+width: 100%;
+padding: 0;
+letter-spacing: 1px;
+}
+.top .logo {
+position: relative;
+top: 0;
+width: 100%;
+text-align: left;
+margin: auto
+}
+footer {
+position: relative;
+right: 0;
+bottom: 0;
+left: 0;
+padding: 1rem;
+background-color: #efefef;
+text-align: center;
+}
+div.gallery {
+margin: 5px;
+border: 1px solid #ccc;
+float: left;
+width: 180px;
+}
+div.gallery:hover {
+border: 1px solid #777;
+}
+div.gallery img {
+width: 100%;
+height: auto;
+}
+div.desc {
+padding: 15px;
+text-align: center;
+}
+/*This will display errors in red color.*/
+span{
+color: red;
+}
+
+</style>
 </head>
-
 <body>
-    <header>
-        <div class="top">
-            <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
-        </div>
-        <nav>
-            <ul class="topnav">
-                <li><a href="index.html">Home</a>
-                </li>
-                <li><a href="invitation.html">Invitation</a>
-                </li>
-				<li><a href="volunteer.html">Volunteers</a>
-                </li>
-                <li><a href="gallery.html">Gallery</a>
-                </li>
-                <li><a href="registration.html" class="active">Registration</a>
-                </li>
-            </ul>
-
-        </nav>
-    </header>
-    <section id="pageForm">
-        <form action="#">
-            <label for="userName">Username:</label>
-            <input type="text" name="userName" placeholder="Enter your Username" />
-
-            <label for="Password">Password:
-            </label>
-            <input type="password" name="password" placeholder="Enter your Password" />
-
-            <label for="passwordVerify">Verify your Password:
-            </label>
-            <input type="password" name="passwordVerify" placeholder="Enter in your Password again" />
-
-            <label for="firstName">First Name:
-            </label>
-            <input type="text" name="firstName" placeholder="Enter your First Name" />
-
-            <label for="hostName">Last Name:
-            </label>
-            <input type="text" name="lastName" placeholder="Enter your Last Name" />
-            <label for="email">Email:
-            </label>
-            <input type="text" name="email" placeholder="Enter your Email Address" />
-			<label for="phoneNumber">Phone Number
-            </label>
-            <input type="text" name="lastName" placeholder="Enter your Phone Number" />
-			<label for="signUpNewsletter">Sign up for newsletter:
-            </label>
-			  <input type="radio" name="signUpNewsletter" value="Yes" checked> Yes 
-				<input type="radio" name="signUpNewsletter" value="No"> No
-            <input type="submit" value="Next step">
-        </form>
-    </section>
-
-    <footer>This events site is for IT3515 tasks.
-    </footer>
+<header>
+<div class="top">
+<a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
+</div>
+<nav>
+<ul class="topnav">
+<li><a href="index.html">Home</a>
+</li>
+<li><a href="invitation.html">Invitation</a>
+</li>
+<li><a href="volunteer.html">Volunteers</a>
+</li>
+<li><a href="gallery.html">Gallery</a>
+</li>
+<li><a href="registration.html" class="active">Registration</a>
+</li>
+</ul>
+</nav>
+</header>
+<section id="pageForm">
+<!-- Action has the fie that will laod after successful validation -->
+<!-- When user clicks on submit button, onsubmit get triggered if it return false then action wont triggered. -->
+<form name="regform" action="confirmation.php" onsubmit="return validate()" method="POST">
+<!-- Username field -->
+<label for="userName">Username:</label>
+<input type="text" name="userName" placeholder="Enter your Username" />
+<span id="erroruserName"></span><br>
+<!-- Password field -->
+<label for="Password">Password:</label>
+<input type="password" name="password" placeholder="Enter your Password" />
+<span id="errorpassword"></span><br>
+<!-- COnfirm Password field -->
+<label for="passwordVerify">Verify your Password:</label>
+<input type="password" name="passwordVerify" placeholder="Enter in your Password again" />
+<span id="errorpasswordVerify"></span><br>
+<!-- First name field -->
+<label for="firstName">First Name:</label>
+<input type="text" name="firstName" placeholder="Enter your First Name" />
+<span id="errorfirstName"></span><br>
+<!-- Last name field -->
+<label for="hostName">Last Name:</label>
+<input type="text" name="lastName" placeholder="Enter your Last Name" />
+<span id="errorlastName"></span><br>
+<!-- Email field -->
+<label for="email">Email:</label>
+<input type="text" name="email" placeholder="Enter your Email Address" />
+<span id="erroremail"></span><br>
+<!-- Phone number field -->
+<label for="phoneNumber">Phone Number</label>
+<input type="text" name="phoneNumber" placeholder="Enter your Phone Number" />
+<span id="errorphoneNumber"></span><br>
+<!-- newsletter radio buttons -->
+<label for="signUpNewsletter">Sign up for newsletter:</label>
+<input type="radio" name="signUpNewsletter" value="Yes" checked> Yes
+<input type="radio" name="signUpNewsletter" value="No"> No
+<span id="errorsignUpNewsletter"></span><br>
+<!-- Submit button -->
+<input type="submit" value="Next step" >
+</form>
+</section>
+<footer>This events site is for IT3515 tasks.
+</footer>
 </body>
-
 </html>
